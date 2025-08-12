@@ -1,170 +1,134 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Clube do Gain — Imersão GAIN Intensiva (B)</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0a0e12; --panel:#121821; --ink:#f0f6fb; --muted:#a8bbca; --line:#1b2731;
-    --accent:#1ceded; --ok:#79ffb4; --danger:#ff6b6b;
-    --s1:8px; --s2:14px; --s3:22px; --s4:34px; --s5:60px; --r:18px; --shadow:0 18px 60px rgba(0,0,0,.38);
-  }
-  *{box-sizing:border-box}
-  html,body{scroll-behavior:smooth}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Outfit',system-ui,sans-serif;line-height:1.75;}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 var(--s3)}
-  header{position:sticky;top:0;z-index:50;background:rgba(10,14,18,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .top{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-  .logo{font-weight:800;letter-spacing:.3px}
-  .btn{padding:14px 28px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(180deg,#15212a,#0f1a21);font-weight:700;box-shadow:var(--shadow)}
-  .btn-cta{background:linear-gradient(180deg,var(--accent),#10cfd1);color:#022628;border:none}
-  .hero{padding:var(--s5) 0 var(--s4)}
-  .hero-grid{display:grid;gap:var(--s5);grid-template-columns:1.15fr .85fr}
-  @media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
-  h1{font-size:50px;line-height:1.12;margin:0 0 var(--s3)}
-  .lead{color:var(--muted);font-size:20px;margin:-6px 0 var(--s3)}
-  .panel{background:linear-gradient(180deg,#141c25,#0f171f);border:1px solid var(--line);border-radius:var(--r);padding:36px;box-shadow:var(--shadow)}
-  .video{position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
-  .video iframe{position:absolute;inset:0;width:100%;height:100%}
-  section{padding:var(--s5) 0;border-top:1px solid var(--line)}
-  .title{font-size:34px;margin:0 0 var(--s3);text-align:center}
-  .grid{display:grid;gap:var(--s4)}
-  .grid-2{grid-template-columns:1fr 1fr}
-  .grid-3{grid-template-columns:repeat(3,1fr)}
-  @media(max-width:980px){.grid-2,.grid-3{grid-template-columns:1fr}}
-  .card{background:linear-gradient(180deg,#141c25,#0f171f);border:1px solid var(--line);border-radius:var(--r);padding:30px}
-  .list{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-  .pill{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:#0f171f;color:var(--muted);font-size:14px}
-  .center{text-align:center}
-  .price{font-size:36px;font-weight:800;letter-spacing:.2px}
-  .strike{text-decoration:line-through;opacity:.5;margin-right:8px}
-  .lots{display:grid;gap:var(--s4);grid-template-columns:1fr 1fr}
-  @media(max-width:980px){.lots{grid-template-columns:1fr}}
-  .lot{padding:36px;border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(180deg,#16222c,#111a21);position:relative}
-  .badge{position:absolute;top:16px;right:16px;padding:8px 12px;border-radius:999px;background:#13242b;border:1px solid var(--line);font-size:12px;color:#9eb4c3;letter-spacing:.2px}
-  .divider{height:1px;background:var(--line);margin:var(--s4) 0}
-  footer{padding:var(--s5) 0;color:#8fa4b4;text-align:center}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imersão SNIPER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: black;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        section {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem;
+            background-color: white;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        .highlight {
+            color: red;
+            font-weight: bold;
+        }
+        .checklist {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .checklist p {
+            margin: 0.5rem 0;
+        }
+        .lotes {
+            margin-top: 2rem;
+        }
+        .lote {
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: white;
+        }
+        .lote1 {
+            background-color: #28a745;
+        }
+        .lote2 {
+            background-color: gray;
+        }
+        .cta {
+            background-color: #ffc107;
+            color: black;
+            padding: 1rem;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+        .cta:hover {
+            background-color: #e0a800;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap top">
-    <div class="logo">CLUBE DO GAIN</div>
-    <a href="#inscricao" class="btn btn-cta">Garantir minha vaga</a>
-  </div>
-</header>
+<header>Imersão SNIPER</header>
 
-<main>
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <h1>O mercado manipulado não vai parar.<br>Mas você pode virar a chave em apenas 3 dias e começar a tirar vantagem dele — <span style="color:#1ceded;font-weight:800">lucrando em dólar</span>.</h1>
-        <p class="lead">Imersão GAIN - Intensiva com Belotto — Operacional claro, leitura limpa, execução simples e proteção de lucro em mercados técnicos e direcionais (Mercado Americano, Asiático, Ouro, Forex, Ações, Cripto, etc).</p>
-        <ul class="list">
-          <li>✔ Entradas objetivas (sem “adivinhar” rompimento)</li>
-          <li>✔ Gestão pra não devolver lucro</li>
-          <li>✔ Opere poucos minutos — não fique preso na tela</li>
-        </ul>
-        <div style="margin-top:20px">
-          <span class="pill">Mentor com + de 10 anos de experiência, Opera AO VIVO e vive do mercado</span>
+<section>
+    <h1>
+        O mercado manipulado não vai parar, 
+        mas você pode <span class="highlight">virar a chave em apenas 3 dias</span> 
+        e começar a tirar vantagem dele — lucrando em dólar.
+    </h1>
+
+    <div class="checklist">
+        <p>✔ Operacional claro</p>
+        <p>✔ Leitura limpa</p>
+        <p>✔ Execução simples</p>
+        <p>✔ Proteção de lucro em mercados técnicos e direcionais (Mercado Americano, Asiático, Ouro, Forex, Ações, Cripto, etc).</p>
+    </div>
+
+    <p><strong>Paulo Belotto</strong> tem + de 10 anos de experiência, vive do mercado e Opera AO VIVO.</p>
+
+    <h2>Por que você só perde? (e como virar o jogo)</h2>
+    <ul>
+        <li>Mini índice / Mini dólar / Opções Binárias</li>
+        <li>Liquidez diminuindo a cada dia e direção suja</li>
+        <li>Manipulação maldosa e constante dos big players</li>
+        <li>Exige muito esforço pra nenhum retorno (em real)</li>
+    </ul>
+
+    <h2>E por que aqui é diferente?</h2>
+    <ul>
+        <li>Leitura mais simples com movimentos mais direcionais</li>
+        <li>Liquidez alta e execução previsível</li>
+        <li>Lucro em DÓLAR (moeda 6x mais forte que o real)</li>
+    </ul>
+
+    <h2>Os Lotes</h2>
+    <div class="lotes">
+        <div class="lote lote1">
+            <h3>Lote 1 - R$ 497,00</h3>
+            <a href="#" class="cta">GARANTIR AGORA minha vaga no Lote 1</a>
+            <p style="margin-top: 1rem;">Encerra ao atingir o limite de vagas.</p>
         </div>
-      </div>
-      <div class="panel">
-        <div style="color:#a8bbca;text-align:center;margin-bottom:12px">Assista primeiro — VSL</div>
-        <div class="video">
-          <iframe src="https://www.youtube.com/embed/VIDEO_ID_DO_YOUTUBE" title="VSL - Imersão GAIN" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <div class="lote lote2">
+            <h3>Lote 2 - R$ 697,00</h3>
+            <p>Em espera</p>
         </div>
-      </div>
     </div>
-  </section>
 
-  <section>
-    <div class="wrap">
-      <h2 class="title">Provas Reais</h2>
-      <p class="center" style="color:#a8bbca;margin:-6px 0 34px">Gente comum saindo do <b>Mini Índice/Dólar/Opções Binárias</b> e virando a chave em mercados muito mais técnicos.</p>
-      <div class="grid grid-3">
-        <div class="card"><b>Junior • Aluno</b><p style="color:#a8bbca">“Saí do mini índice e fui pro Nasdaq com o Belotto. Parei de devolver lucro. 1ª semana positiva da vida.”</p></div>
-        <div class="card"><b>Mariana • Mentorada</b><p style="color:#a8bbca">“Operava 6h por dia e vivia exausta. Hoje foco em 2 janelas e bato meta antes do meio‑dia.”</p></div>
-        <div class="card"><b>Rafael • Comunidade</b><p style="color:#a8bbca">“Não era técnica, era comportamento. A rotina do Clube me blindou.”</p></div>
-      </div>
-    </div>
-  </section>
+    <p><strong>Alunos da Imersão SNIPER</strong> receberão um <strong>BÔNUS ESPECIAL do BELOTTO</strong> na ÚLTIMA AULA.</p>
+</section>
 
-  <section>
-    <div class="wrap">
-      <h2 class="title">Por que você só perde (e como virar o jogo)</h2>
-      <div class="grid grid-2">
-        <div class="card">
-          <h3 style="margin-top:0;color:#ff6b6b">Mini índice / Mini dólar / Opções Binárias</h3>
-          <ul class="list">
-            <li>✖ Liquidez diminuindo a cada dia e direção suja</li>
-            <li>✖ Manipulação maldosa e constante dos big players</li>
-            <li>✖ Exige muito esforço pra nenhum retorno (em real)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 style="margin-top:0;color:#79ffb4">Nasdaq, Dow, Ouro, Forex, Ásia</h3>
-          <ul class="list">
-            <li>✔ Leitura mais simples com movimentos mais direcionais</li>
-            <li>✔ Liquidez alta e execução previsível</li>
-            <li>✔ Lucro em <b>DÓLAR</b> (moeda 6x mais forte que o real)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="programa">
-    <div class="wrap">
-      <h2 class="title">O que você recebe — dia a dia</h2>
-      <div class="grid grid-3">
-        <div class="card"><h3>DIA 1 — O Despertar</h3><ul class="list"><li>⏱️ Janelas de maior movimento</li><li>📊 BR x EUA/Ásia na prática</li><li>🧭 Checklist “não devolvo lucro hoje”</li></ul></div>
-        <div class="card"><h3>DIA 2 — A Leitura Certa</h3><ul class="list"><li>📈 Setup simples que pegou o movimento</li><li>🧪 Filtro anti‑rompimento falso</li><li>🛡️ 3 ajustes que reduzem stops bobos</li></ul></div>
-        <div class="card"><h3>DIA 3 — A Virada</h3><ul class="list"><li>🏁 Proteger lucro (trailing/parcial)</li><li>🧠 Ansiedade sob controle na hora do clique</li><li>🪙 Por que ganhar em dólar muda sua vida</li></ul></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="inscricao">
-    <div class="wrap">
-      <div class="panel" style="padding:46px;text-align:center">
-        <h2 class="title" style="margin-bottom:6px">Inscrição — vagas por lote</h2>
-        <p style="color:#a8bbca;margin:0 0 34px">Poucas vagas por lote para manter a experiência ao vivo realmente acompanhada.</p>
-        <div class="grid grid-2">
-          <div class="lot" style="position:relative">
-            <span class="badge">POUCAS VAGAS</span>
-            <h3 style="margin-top:0">Lote 1</h3>
-            <p class="price"><span class="strike">R$ 597</span> R$ 497</p>
-            <p style="color:#a8bbca">Acesso aos 3 dias ao vivo + replays 7 dias + materiais.</p>
-            <div class="divider"></div>
-            <a href="LINK_CHECKOUT_LOTE1" class="btn btn-cta" style="width:100%">Garantir minha vaga no Lote 1</a>
-            <small style="color:#a8bbca;display:block;margin-top:8px">Encerra ao atingir o limite de vagas.</small>
-          </div>
-          <div class="lot" style="position:relative">
-            <span class="badge">EM BREVE</span>
-            <h3 style="margin-top:0">Lote 2</h3>
-            <p class="price">R$ 697</p>
-            <p style="color:#a8bbca">Mesmo acesso. Valor altera ao virar o lote.</p>
-            <div class="divider"></div>
-            <a href="LINK_LISTA_ESPERA_LOTE2" class="btn" style="width:100%">Entrar na lista para o Lote 2</a>
-            <small style="color:#a8bbca;display:block;margin-top:8px">Avisamos por e-mail assim que abrir.</small>
-          </div>
-        </div>
-        <p style="color:#a8bbca;margin-top:34px">Participou e quer continuar? Desconto de <b>R$1.000</b> na mentoria por 48h.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      <div style="height:1px;background:#1b2731;margin:34px 0"></div>
-      <p>“Comportamento é TUDO — ou você está no CLUBE DO GAIN ou está no clube do loss.”</p>
-      <p style="color:#8fa4b4">Não é recomendação de compra ou venda. Use as informações com critério e bom juízo.</p>
-    </div>
-  </footer>
-</main>
 </body>
 </html>
