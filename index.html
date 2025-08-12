@@ -4,59 +4,61 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Clube do Gain — Imersão GAIN Intensiva</title>
-<meta name="description" content="VSL + Provas sociais. 3 dias ao vivo com Belotto para sair do mercado manipulado, operar mercados técnicos (Nasdaq, Dow, Ouro, Forex, Ásia) e ganhar em dólar.">
+<meta name="description" content="Imersão GAIN Intensiva: VSL + Provas sociais. 3 dias ao vivo para sair do mercado manipulado, operar mercados técnicos (Nasdaq, Dow, Ouro, Forex, Ásia) e ganhar em dólar.">
 <style>
-:root{
-  --bg:#0b0f12; --panel:#12181d; --ink:#eaf2f7; --muted:#9fb2bf; --accent:#1ceded; --ok:#66ffb2; --danger:#ff6363; --line:#1e2a33;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.wrap{max-width:1120px;margin:0 auto;padding:20px}
-header{position:sticky;top:0;z-index:50;background:rgba(11,15,18,.85);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--line)}
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800}
-.logo .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;border:1px solid #21303a;background:linear-gradient(180deg,#162129,#0f171d);color:var(--ink);font-weight:700}
-.btn:hover{transform:translateY(-1px)}
-.btn-cta{background:linear-gradient(180deg,var(--accent),#0fd0d0);color:#001b1b;border:none}
-.btn-wa{background:linear-gradient(180deg,#25D366,#18a64d);color:#001b0a;border:none}
-.badges{display:flex;flex-wrap:wrap;gap:8px}
-.pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;background:#0e151a}
-.hero{display:grid;gap:20px;grid-template-columns:1.2fr 1fr;padding:26px 0}
-@media(max-width:980px){.hero{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,#141a20,#0f151a);border:1px solid var(--line);border-radius:16px;padding:18px}
-h1{font-size:38px;line-height:1.15;margin:0 0 8px}
-.lead{color:var(--muted);font-size:18px;margin:0 0 18px}
-.grid{display:grid;gap:16px}
-.grid-3{grid-template-columns:repeat(3,1fr)}
-.grid-2{grid-template-columns:repeat(2,1fr)}
-@media(max-width:980px){.grid-3,.grid-2{grid-template-columns:1fr}}
-.subtitle{margin:0 0 8px;font-size:22px}
-.kpi{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px}
-.kpi b{color:var(--ok);font-size:18px}
-.divider{height:1px;background:var(--line);margin:16px 0}
-section{padding:28px 0;border-top:1px solid var(--line)}
-.title{font-size:28px;margin:0 0 10px}
-.list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-.testi{display:flex;gap:12px}
-.testi .pic{width:44px;height:44px;border-radius:50%;background:#24313a}
-.note{font-size:12px;color:#7f97a6}
-.video{position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
-.video iframe,.video video{position:absolute;inset:0;width:100%;height:100%}
-.sticky-cta{position:sticky;bottom:12px;display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-.faq dt{font-weight:800;margin:10px 0 4px}
-.faq dd{margin:0 0 10px;color:var(--muted)}
-.price{font-size:32px;font-weight:900}
-.strike{text-decoration:line-through;opacity:.55;margin-right:8px}
-.tag{font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:8px;color:var(--muted)}
-.compare{display:grid;gap:16px;grid-template-columns:1fr 1fr}
-.compare .col{border:1px solid var(--line);border-radius:14px;padding:14px}
-.compare .bad{color:var(--danger)}
-.compare .good{color:var(--ok)}
-footer{padding:28px 0;color:#7f97a6;text-align:center}
-.highlight{color:var(--accent);font-weight:800}
+  :root{
+    --bg:#0b0f12; --panel:#11161b; --ink:#eaf2f7; --muted:#a6b8c4; --line:#1b242c;
+    --accent:#1ceded; --ok:#68ffb0; --danger:#ff6b6b;
+    --space1:8px; --space2:14px; --space3:20px; --space4:32px; --space5:48px; --radius:16px; --shadow:0 12px 40px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6;}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 var(--space3)}
+  header{position:sticky;top:0;z-index:50;background:rgba(11,15,18,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .top{display:flex;gap:var(--space3);align-items:center;justify-content:space-between;padding:var(--space2) 0}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(180deg,#121a20,#0d1419);font-weight:700;box-shadow:var(--shadow)}
+  .btn-cta{background:linear-gradient(180deg,var(--accent),#0fc9cf);color:#032022;border:none}
+  .btn:hover{transform:translateY(-1px)}
+  .hero{padding:var(--space5) 0 var(--space4)}
+  .hero-grid{display:grid;gap:var(--space4);grid-template-columns:1.1fr .9fr}
+  @media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
+  h1{font-size:44px;line-height:1.15;margin:0 0 var(--space2)}
+  .lead{color:var(--muted);font-size:18px;margin:0 0 var(--space3)}
+  .panel{background:linear-gradient(180deg,#12191f,#0e1419);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space3);box-shadow:var(--shadow)}
+  .video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%}
+  section{padding:var(--space5) 0;border-top:1px solid var(--line)}
+  .title{font-size:30px;margin:0 0 var(--space2)}
+  .muted{color:var(--muted)}
+  .grid{display:grid;gap:var(--space3)}
+  .grid-2{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:980px){.grid-2,.grid-3{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,#12191f,#0e1419);border:1px solid var(--line);border-radius:var(--radius);padding:var(--space3)}
+  .list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .spacious p, .spacious li{margin:0 0 10px}
+  .kpi{display:flex;gap:var(--space3);flex-wrap:wrap;color:var(--muted);margin-top:var(--space2)}
+  .kpi b{color:var(--ok)}
+  .compare{display:grid;gap:var(--space3);grid-template-columns:1fr 1fr}
+  .good{color:var(--ok)} .bad{color:var(--danger)}
+  .pill{display:inline-block;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:#0f161b;color:var(--muted);font-size:12px}
+  .center{text-align:center}
+  .price{font-size:34px;font-weight:900;letter-spacing:.2px}
+  .strike{text-decoration:line-through;opacity:.5;margin-right:8px}
+  .lots{display:grid;gap:var(--space3);grid-template-columns:1fr 1fr}
+  @media(max-width:980px){.lots{grid-template-columns:1fr}}
+  .lot{padding:var(--space3);border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(180deg,#141c22,#0f161b);position:relative}
+  .lot small{color:var(--muted)}
+  .badge{position:absolute;top:14px;right:14px;padding:6px 10px;border-radius:999px;background:#132026;border:1px solid var(--line);font-size:12px;color:var(--muted)}
+  .divider{height:1px;background:var(--line);margin:var(--space3) 0}
+  footer{padding:var(--space5) 0;color:#7d93a3;text-align:center}
+  /* mais respiro nos elementos */
+  .hero .panel, .card, .lot{padding:28px}
+  .wrap > section + section{scroll-margin-top:80px}
 </style>
 </head>
 <body>
@@ -64,165 +66,184 @@ footer{padding:28px 0;color:#7f97a6;text-align:center}
 <header>
   <div class="wrap top">
     <div class="logo"><span class="dot"></span> CLUBE DO GAIN</div>
-    <nav class="badges">
-      <span class="pill">Ao vivo</span><span class="pill">Replay 7 dias</span><span class="pill">USD</span><span class="pill">Mercados técnicos</span>
-    </nav>
-    <div>
-      <a href="#inscricao" class="btn btn-cta">Garantir minha vaga</a>
-    </div>
+    <a href="#inscricao" class="btn btn-cta">Garantir minha vaga</a>
   </div>
 </header>
 
-<main class="wrap">
-  <!-- HERO: VSL + bullets -->
+<main>
+  <!-- HERO -->
   <section class="hero">
-    <div>
-      <h1>Pare de apanhar no mercado manipulado. <span class="highlight">Aprenda a ganhar em dólar</span> em 3 dias.</h1>
-      <p class="lead">Imersão GAIN Intensiva com Belotto: execução simples, leitura limpa e proteção de lucro nos mercados mais técnicos (Nasdaq, Dow, Ouro, Forex e Ásia).</p>
-      <ul class="list">
-        <li>✔ Entradas mais certeiras (sem “adivinhar” rompimento)</li>
-        <li>✔ Gestão que evita devolver o lucro</li>
-        <li>✔ Rotina curta pra operar <u>sem viver preso à tela</u></li>
-      </ul>
-      <div class="kpi">
-        <div><b>+10 anos</b> operando ao vivo</div>
-        <div><b>USD</b> moeda forte (5–6x o real)</div>
-        <div><b>Ambiente técnico</b> e direcional</div>
-      </div>
-      <div class="sticky-cta">
-        <a href="#inscricao" class="btn btn-cta">Quero a vaga</a>
-        <a href="https://wa.me/SEU_NUMERO" class="btn btn-wa">Tirar uma dúvida no WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="subtitle">Assista primeiro — VSL</div>
-      <div class="video">
-        <!-- Substitua pelo seu player/Vimeo/YouTube -->
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID_DO_YOUTUBE" title="VSL - Imersão GAIN Intensiva" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
-      <div class="note" style="margin-top:8px">Dica: deixe o VSL com prova, cortes rápidos, CTA e bônus no final.</div>
-    </div>
-  </section>
-
-  <!-- Provas sociais de impacto -->
-  <section>
-    <h2 class="title">Provas Reais</h2>
-    <div class="grid grid-3">
-      <div class="card testi">
-        <div class="pic"></div>
-        <div>
-          <b>Junior</b> <span class="tag">Aluno</span>
-          <p class="note">“Depois que saí do mini índice e fui com o Belotto pro Nasdaq, parei de devolver lucro. 1ª semana positiva da vida.”</p>
-        </div>
-      </div>
-      <div class="card testi">
-        <div class="pic"></div>
-        <div>
-          <b>Mariana</b> <span class="tag">Mentorada</span>
-          <p class="note">“Eu operava 6h por dia e vivia exausta. Hoje foco em 2 janelas e bato meta antes do meio‑dia.”</p>
-        </div>
-      </div>
-      <div class="card testi">
-        <div class="pic"></div>
-        <div>
-          <b>Rafael</b> <span class="tag">Comunidade</span>
-          <p class="note">“Achei que era técnica… era comportamento. A rotina do Clube me blindou.”</p>
-        </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="kpi"><b>+1000</b> alunos impactados • <b>AO VIVO</b> todos os dias • <b>Zero sinais</b>, 100% leitura e execução</div>
-  </section>
-
-  <!-- Comparativo BR x Mercados técnicos -->
-  <section>
-    <h2 class="title">Por que você apanha no BR (e como virar o jogo)</h2>
-    <div class="compare">
-      <div class="col">
-        <h3 class="bad">Mini índice / Mini dólar (BR)</h3>
+    <div class="wrap hero-grid">
+      <div class="spacious">
+        <h1>Sai do mercado manipulado. <br>Começa a <span style="color:var(--accent);font-weight:800">ganhar em dólar</span> em 3 dias.</h1>
+        <p class="lead">Imersão GAIN Intensiva com Belotto — execução simples, leitura limpa e proteção de lucro em mercados <b>mais técnicos e direcionais</b> (Nasdaq, Dow, Ouro, Forex, Ásia).</p>
         <ul class="list">
-          <li>✖ Liquidez menor, direção suja</li>
-          <li>✖ Manipulação constante por big players</li>
-          <li>✖ Mesma energia, pouco retorno (em real)</li>
+          <li>✔ Entradas objetivas (sem “adivinhar” rompimento)</li>
+          <li>✔ Gestão pra não devolver lucro</li>
+          <li>✔ Janelas curtas — sem viver preso à tela</li>
         </ul>
+        <div class="kpi">
+          <span class="pill">+10 anos ao vivo</span>
+          <span class="pill">Liquidez e direção</span>
+          <span class="pill">Moeda forte (USD)</span>
+        </div>
       </div>
-      <div class="col">
-        <h3 class="good">Nasdaq, Dow, Ouro, Forex, Ásia</h3>
-        <ul class="list">
-          <li>✔ Leitura mais limpa, movimentos direcionais</li>
-          <li>✔ Liquidez alta e execução previsível</li>
-          <li>✔ Lucro em <b>USD</b> (moeda forte)</li>
-        </ul>
+      <div class="panel">
+        <div class="muted" style="margin-bottom:10px">Assista primeiro — VSL</div>
+        <div class="video">
+          <!-- troque o ID abaixo -->
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_DO_YOUTUBE" title="VSL - Imersão GAIN" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Programa por dia -->
+  <!-- PROVAS SOCIAIS -->
+  <section>
+    <div class="wrap">
+      <h2 class="title center">Provas Reais</h2>
+      <p class="muted center" style="margin:0 0 var(--space4)">Gente comum saindo do mini índice/dólar e virando o jogo em mercados técnicos.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <b>Junior • Aluno</b>
+          <p class="muted">“Saí do mini índice e fui pro Nasdaq com o Belotto. Parei de devolver lucro. 1ª semana positiva da vida.”</p>
+        </div>
+        <div class="card">
+          <b>Mariana • Mentorada</b>
+          <p class="muted">“Operava 6h por dia e vivia exausta. Hoje foco em 2 janelas e bato meta antes do meio‑dia.”</p>
+        </div>
+        <div class="card">
+          <b>Rafael • Comunidade</b>
+          <p class="muted">“Não era técnica, era comportamento. A rotina do Clube me blindou.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARATIVO -->
+  <section>
+    <div class="wrap">
+      <h2 class="title center">Por que você apanha no BR (e como virar o jogo)</h2>
+      <div class="compare">
+        <div class="card">
+          <h3 class="bad">Mini índice / Mini dólar (BR)</h3>
+          <ul class="list">
+            <li>✖ Liquidez menor, direção suja</li>
+            <li>✖ Manipulação constante por big players</li>
+            <li>✖ Muito esforço pra pouco retorno (em real)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="good">Nasdaq, Dow, Ouro, Forex, Ásia</h3>
+          <ul class="list">
+            <li>✔ Leitura mais limpa, movimentos direcionais</li>
+            <li>✔ Liquidez alta e execução previsível</li>
+            <li>✔ Lucro em <b>USD</b> (moeda forte)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMA POR DIA -->
   <section id="programa">
-    <h2 class="title">O que você recebe — Dia a dia</h2>
-    <div class="grid grid-3">
-      <div class="card">
-        <h3>DIA 1 — O Despertar</h3>
-        <ul class="list">
-          <li>⏱️ Janelas de maior movimento</li>
-          <li>📊 BR x EUA/Ásia (diferença na prática)</li>
-          <li>🧭 Checklist “não devolvo lucro hoje”</li>
-        </ul>
+    <div class="wrap">
+      <h2 class="title center">O que você recebe — dia a dia</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>DIA 1 — O Despertar</h3>
+          <ul class="list">
+            <li>⏱️ Janelas de maior movimento</li>
+            <li>📊 BR x EUA/Ásia na prática</li>
+            <li>🧭 Checklist “não devolvo lucro hoje”</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>DIA 2 — A Leitura Certa</h3>
+          <ul class="list">
+            <li>📈 Setup simples que pegou o movimento</li>
+            <li>🧪 Filtro anti‑rompimento falso</li>
+            <li>🛡️ 3 ajustes que reduzem stops bobos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>DIA 3 — A Virada</h3>
+          <ul class="list">
+            <li>🏁 Proteger lucro (trailing/parcial)</li>
+            <li>🧠 Ansiedade sob controle na hora do clique</li>
+            <li>🪙 Por que ganhar em dólar muda sua vida</li>
+          </ul>
+        </div>
       </div>
-      <div class="card">
-        <h3>DIA 2 — A Leitura Certa</h3>
-        <ul class="list">
-          <li>📈 Setup simples que pegou o movimento</li>
-          <li>🧪 Filtro anti‑rompimento falso</li>
-          <li>🛡️ 3 ajustes que reduzem stops bobos</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>DIA 3 — A Virada</h3>
-        <ul class="list">
-          <li>🏁 Proteger lucro (trailing/parcial)</li>
-          <li>🧠 Ansiedade sob controle na hora do clique</li>
-          <li>🪙 Por que ganhar em dólar muda sua vida</li>
-        </ul>
-      </div>
-    </div>
-    <div class="sticky-cta">
-      <a href="#inscricao" class="btn btn-cta">Quero minha vaga</a>
-      <a href="https://wa.me/SEU_NUMERO" class="btn btn-wa">Falar no WhatsApp</a>
     </div>
   </section>
 
-  <!-- FAQ/Objeções -->
+  <!-- FAQ / OBJECÕES -->
   <section>
-    <h2 class="title">Dúvidas e verdades incômodas</h2>
-    <dl class="faq">
-      <dt>“Não tenho tempo.”</dt>
-      <dd>Você já gasta tempo recuperando prejuízo. Aqui você opera em janelas objetivas, com plano e filtro.</dd>
-      <dt>“Tenho medo de ser mais do mesmo.”</dt>
-      <dd>Você vai ver ao vivo a diferença entre BR manipulado e mercados técnicos. Não é papo — é tela e execução.</dd>
-      <dt>“E se eu não acompanhar?”</dt>
-      <dd>Replay 7 dias + grupo fechado pra dúvidas. Simples e direto.</dd>
-    </dl>
+    <div class="wrap">
+      <h2 class="title center">Dúvidas e verdades incômodas</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h4>“Não tenho tempo.”</h4>
+          <p class="muted">Você já gasta tempo recuperando prejuízo. Aqui você opera em janelas objetivas, com plano e filtro.</p>
+        </div>
+        <div class="card">
+          <h4>“Tenho medo de ser mais do mesmo.”</h4>
+          <p class="muted">Você vai ver ao vivo a diferença entre BR manipulado e mercados técnicos. Não é papo — é tela e execução.</p>
+        </div>
+        <div class="card">
+          <h4>“E se eu não acompanhar?”</h4>
+          <p class="muted">Replay 7 dias + material direto ao ponto. Sem ruído, só o que faz diferença.</p>
+        </div>
+        <div class="card">
+          <h4>“Qual o melhor horário pra operar?”</h4>
+          <p class="muted">Você vai sair do Dia 1 com sua janela ideal definida — e sem viver preso à tela.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Inscrição -->
-  <section id="inscricao" class="card">
-    <h2 class="title">Inscrição</h2>
-    <p class="note">Vagas limitadas para manter o acompanhamento ao vivo de verdade.</p>
-    <p class="price"><span class="strike">R$ 597</span> R$ 397 <span class="note">ou</span> R$ 297 <span class="note">lote relâmpago</span></p>
-    <div class="sticky-cta">
-      <a href="LINK_DE_CHECKOUT" class="btn btn-cta">Garantir minha vaga agora</a>
-      <a href="https://wa.me/SEU_NUMERO" class="btn btn-wa">Tirar dúvida no WhatsApp</a>
+  <!-- INSCRIÇÃO / LOTES -->
+  <section id="inscricao">
+    <div class="wrap">
+      <div class="panel center" style="padding:40px">
+        <h2 class="title">Inscrição — vagas por lote</h2>
+        <p class="muted" style="margin-bottom:var(--space3)">Poucas vagas por lote para manter a experiência ao vivo realmente acompanhada.</p>
+
+        <div class="lots">
+          <div class="lot">
+            <span class="badge">POUCAS VAGAS</span>
+            <h3>Lote 1</h3>
+            <p class="price"><span class="strike">R$ 597</span> R$ 497</p>
+            <p class="muted">Acesso aos 3 dias ao vivo + replays 7 dias + materiais.</p>
+            <div class="divider"></div>
+            <a href="LINK_CHECKOUT_LOTE1" class="btn btn-cta" style="width:100%">Garantir minha vaga no Lote 1</a>
+            <small class="muted">Encerra ao atingir o limite de vagas.</small>
+          </div>
+
+          <div class="lot">
+            <span class="badge">EM BREVE</span>
+            <h3>Lote 2</h3>
+            <p class="price">R$ 697</p>
+            <p class="muted">Mesmo acesso. Valor altera ao virar o lote.</p>
+            <div class="divider"></div>
+            <a href="LINK_LISTA_ESPERA_LOTE2" class="btn" style="width:100%">Entrar na lista para o Lote 2</a>
+            <small class="muted">Avisamos por e-mail assim que abrir.</small>
+          </div>
+        </div>
+
+        <p class="muted" style="margin-top:var(--space3)">Participou e quer continuar? Desconto de <b>R$1.000</b> na mentoria por 48h.</p>
+      </div>
     </div>
-    <p class="note">Participou e quer continuar? Desconto de <b>R$1.000</b> na mentoria por 48h.</p>
   </section>
 
   <footer>
-    <div class="divider"></div>
-    <p>“Comportamento é TUDO — ou você está no CLUBE DO GAIN ou está no clube do loss.”</p>
-    <p class="note">Não é recomendação de compra ou venda. Use as informações com critério e bom juízo.</p>
+    <div class="wrap">
+      <div class="divider"></div>
+      <p>“Comportamento é TUDO — ou você está no CLUBE DO GAIN ou está no clube do loss.”</p>
+      <p class="muted">Não é recomendação de compra ou venda. Use as informações com critério e bom juízo.</p>
+    </div>
   </footer>
 </main>
-
 </body>
 </html>
