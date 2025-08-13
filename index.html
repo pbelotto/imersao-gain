@@ -5,13 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Imersão SNIPER</title>
 
-<!-- Fonte -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root{
     --bg:#0c1116; --panel:#121821; --ink:#f0f6fb; --muted:#9fb2c0; --line:#1c2a35;
-    --accent:#1ceded; --ok:#7affb5; --danger:#ff6b6b; --warn:#ffc857;
+    --accent:#1ceded; --ok:#7affb5; --danger:#ff6b6b;
     --wrap:1180px; --r:16px; --s1:8px; --s2:14px; --s3:20px; --s4:32px; --s5:56px; --shadow:0 18px 60px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
@@ -21,58 +20,53 @@
   img{max-width:100%;display:block}
   .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--s3)}
 
-  /* Header fixo */
+  /* Header */
   header{position:sticky;top:0;z-index:100;background:rgba(12,17,22,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .top{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
   .logo{font-weight:800;letter-spacing:.3px}
   .btn{padding:12px 22px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(180deg,#15212a,#0f1a21);font-weight:700;box-shadow:var(--shadow)}
   .btn-cta{background:linear-gradient(180deg,var(--accent),#10cfd1);color:#012426;border:none}
 
-  /* Hero */
+  /* Hero (VSL) */
   .hero{padding:var(--s5) 0 var(--s4)}
-  .grid{display:grid;gap:var(--s4)}
-  .hero-grid{grid-template-columns:1.2fr .8fr}
-  @media(max-width:980px){.hero-grid{grid-template-columns:1fr}}
-  h1{font-size:46px;line-height:1.15;margin:0 0 var(--s2)}
-  .lead{color:var(--muted);margin:0 0 var(--s3)}
-  .panel{background:linear-gradient(180deg,#141c25,#0f171f);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow)}
+  .panel{background:linear-gradient(180deg,#141c25,#0f171f);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
   .video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
   .video iframe{position:absolute;inset:0;width:100%;height:100%}
+  .vsl-controls{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:var(--muted);font-size:14px}
+  .microbtn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#0f171f;font-weight:700;cursor:pointer}
 
-  /* Seções */
+  /* Sections */
   section{padding:var(--s5) 0;border-top:1px solid var(--line)}
   .title{font-size:30px;margin:0 0 var(--s2);text-align:center}
   .subtitle{color:var(--muted);text-align:center;margin:0 0 var(--s4)}
-  .card{background:linear-gradient(180deg,#141c25,#0f171f);border:1px solid var(--line);border-radius:var(--r);padding:24px}
-  .list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-  .pill{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#0f171f;color:#9fb2c0;font-size:13px}
-
-  /* Provas (slider simples) */
-  .testi{display:flex;gap:var(--s3);overflow:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
-  .testi .card{min-width:320px;scroll-snap-align:start}
-
-  /* Comparativo */
+  .grid{display:grid;gap:var(--s4)}
   .grid-2{grid-template-columns:1fr 1fr}
   .grid-3{grid-template-columns:repeat(3,1fr)}
   @media(max-width:980px){.grid-2,.grid-3{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,#141c25,#0f171f);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+  .list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .pill{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#0f171f;color:#9fb2c0;font-size:13px}
+  .testi{display:flex;gap:var(--s3);overflow:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+  .testi .card{min-width:320px;scroll-snap-align:start}
   .good{color:var(--ok)} .bad{color:var(--danger)}
-
-  /* Lotes */
   .lots{display:grid;gap:var(--s4);grid-template-columns:1fr 1fr}
   @media(max-width:980px){.lots{grid-template-columns:1fr}}
   .lot{position:relative;padding:28px;border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(180deg,#16222c,#111a21)}
   .price{font-size:34px;font-weight:800}
   .strike{text-decoration:line-through;opacity:.5;margin-right:8px}
   .badge{position:absolute;top:14px;right:14px;padding:6px 10px;border-radius:999px;background:#13242b;border:1px solid var(--line);font-size:12px;color:#9eb4c3}
-
-  /* FAQ (accordion) */
   .faq{max-width:920px;margin:0 auto}
   details{border:1px solid var(--line);border-radius:12px;background:#101823;padding:14px;margin-bottom:12px}
   summary{cursor:pointer;font-weight:700}
   details[open]{background:#0f171f}
-
-  footer{padding:var(--s5) 0;color:#8fa4b4;text-align:center}
   .divider{height:1px;background:var(--line);margin:var(--s3) 0}
+  footer{padding:var(--s5) 0;color:#8fa4b4;text-align:center}
+
+  /* Gate: esconde o resto até 4:50 */
+  .gated{display:none}
+  .show{display:block}
+  .peek{color:var(--muted);text-align:center;margin-top:12px;font-size:14px}
+  .peek a{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -85,171 +79,236 @@
 </header>
 
 <main>
-  <!-- HERO -->
+  <!-- HERO: VSL autoplay (muted) + controles -->
   <section class="hero">
-    <div class="wrap grid hero-grid">
-      <div>
-        <h1>O mercado manipulado não vai parar, mas você pode <span style="color:#1ceded;font-weight:800">virar a chave em apenas 3 dias</span> e começar a tirar vantagem dele — lucrando em dólar.</h1>
-
-        <ul class="list" style="margin-top:12px">
-          <li>✔ Operacional claro</li>
-          <li>✔ Leitura limpa</li>
-          <li>✔ Execução simples</li>
-          <li>✔ Proteção de lucro em mercados técnicos e direcionais (Mercado Americano, Asiático, Ouro, Forex, Ações, Cripto, etc).</li>
-        </ul>
-
-        <div style="margin-top:14px">
-          <span class="pill">Paulo Belotto tem + de 10 anos de experiência, vive do mercado e Opera AO VIVO</span>
-        </div>
-      </div>
-
+    <div class="wrap">
       <div class="panel">
-        <div style="color:var(--muted);text-align:center;margin-bottom:10px">Assista primeiro — VSL</div>
         <div class="video">
-          <!-- VSL embed -->
-          <iframe src="https://www.youtube.com/embed/0bO4fIvrG0c" title="VSL - Imersão SNIPER" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <!-- enablejsapi para controlar mute/unmute via postMessage -->
+          <iframe id="vsl"
+            src="https://www.youtube.com/embed/0bO4fIvrG0c?autoplay=1&mute=1&controls=1&rel=0&playsinline=1&enablejsapi=1"
+            title="VSL - Imersão SNIPER"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen></iframe>
         </div>
+        <div class="vsl-controls">
+          <button id="unmuteBtn" class="microbtn">Ativar áudio</button>
+          <span id="gateTimer">Liberando conteúdo em 04:50…</span>
+        </div>
+        <div class="peek">Com pressa? <a href="#conteudo" id="unlockNow">Quero ver o conteúdo agora</a></div>
       </div>
     </div>
   </section>
 
-  <!-- PROVAS REAIS -->
-  <section>
-    <div class="wrap">
-      <h2 class="title">Provas Reais</h2>
-      <p class="subtitle">Gente comum saindo do <b>Mini Índice/Dólar/Opções Binárias</b> e virando a chave em mercados muito mais técnicos.</p>
+  <!-- CONTEÚDO (fica escondido por 4:50 e depois aparece) -->
+  <div id="conteudo" class="gated">
+    <!-- PROVAS REAIS -->
+    <section>
+      <div class="wrap">
+        <h2 class="title">Provas Reais</h2>
+        <p class="subtitle">Gente comum saindo do <b>Mini Índice/Dólar/Opções Binárias</b> e virando a chave em mercados muito mais técnicos.</p>
 
-      <div class="testi">
-        <div class="card"><b>Junior • Aluno</b><p class="lead">“Saí do mini índice e fui pro Nasdaq com o Belotto. Parei de devolver lucro. 1ª semana positiva da vida.”</p></div>
-        <div class="card"><b>Mariana • Mentorada</b><p class="lead">“Operava 6h por dia e vivia exausta. Hoje foco em 2 janelas e bato meta antes do meio-dia.”</p></div>
-        <div class="card"><b>Rafael • Comunidade</b><p class="lead">“Não era técnica, era comportamento. A rotina do Clube me blindou.”</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPARATIVO -->
-  <section>
-    <div class="wrap">
-      <h2 class="title">Por que você só perde? (e como virar o jogo)</h2>
-      <div class="grid grid-2">
-        <div class="card">
-          <h3 class="bad" style="margin-top:0">Mini índice / Mini dólar / Opções Binárias</h3>
-          <ul class="list">
-            <li>✖ Liquidez diminuindo a cada dia e direção suja</li>
-            <li>✖ Manipulação maldosa e constante dos big players</li>
-            <li>✖ Exige muito esforço pra nenhum retorno (em real)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 class="good" style="margin-top:0">Nasdaq, Dow, Ouro, Forex, Ásia</h3>
-          <ul class="list">
-            <li>✔ Leitura mais simples com movimentos mais direcionais</li>
-            <li>✔ Liquidez alta e execução previsível</li>
-            <li>✔ Lucro em <b>DÓLAR</b> (moeda 6x mais forte que o real)</li>
-          </ul>
+        <div class="testi">
+          <div class="card"><b>Junior • Aluno</b><p class="subtitle">“Saí do mini índice e fui pro Nasdaq com o Belotto. Parei de devolver lucro. 1ª semana positiva da vida.”</p></div>
+          <div class="card"><b>Mariana • Mentorada</b><p class="subtitle">“Operava 6h por dia e vivia exausta. Hoje foco em 2 janelas e bato meta antes do meio-dia.”</p></div>
+          <div class="card"><b>Rafael • Comunidade</b><p class="subtitle">“Não era técnica, era comportamento. A rotina do Clube me blindou.”</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROGRAMA POR DIA -->
-  <section id="programa">
-    <div class="wrap">
-      <h2 class="title">O que você recebe — dia a dia</h2>
-      <div class="grid grid-3">
-        <div class="card">
-          <h3>DIA 1 — O Despertar</h3>
-          <ul class="list">
-            <li>⏱️ Janelas de maior movimento</li>
-            <li>📊 BR x EUA/Ásia na prática</li>
-            <li>🧭 Checklist “não devolvo lucro hoje”</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>DIA 2 — A Leitura Certa</h3>
-          <ul class="list">
-            <li>📈 Setup simples que pegou o movimento</li>
-            <li>🧪 Filtro anti-rompimento falso</li>
-            <li>🛡️ 3 ajustes que reduzem stops bobos</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>DIA 3 — A Virada</h3>
-          <ul class="list">
-            <li>🏁 Proteger lucro (trailing/parcial)</li>
-            <li>🧠 Ansiedade sob controle na hora do clique</li>
-            <li>🪙 Por que ganhar em dólar muda sua vida</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section>
-    <div class="wrap">
-      <h2 class="title">Dúvidas frequentes</h2>
-      <div class="faq">
-        <details>
-          <summary>Não tenho tempo.</summary>
-          <p>Você já gasta tempo recuperando prejuízo. Aqui você opera em janelas objetivas, com plano e filtro.</p>
-        </details>
-        <details>
-          <summary>Tenho medo de ser mais do mesmo.</summary>
-          <p>Você vai ver ao vivo a diferença entre BR manipulado e mercados técnicos. Não é papo — é tela e execução.</p>
-        </details>
-        <details>
-          <summary>E se eu não acompanhar?</summary>
-          <p>Replay por 7 dias + material direto ao ponto. Sem ruído, só o que faz diferença.</p>
-        </details>
-        <details>
-          <summary>Qual o melhor horário pra operar?</summary>
-          <p>Você sai do Dia 1 com sua janela ideal definida — e sem viver preso à tela.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- INSCRIÇÃO / LOTES -->
-  <section id="inscricao">
-    <div class="wrap">
-      <div class="panel" style="padding:42px;text-align:center">
-        <h2 class="title" style="margin-bottom:6px">Inscrição — vagas por lote</h2>
-        <p class="subtitle">Poucas vagas por lote para manter a experiência ao vivo realmente acompanhada.</p>
-
-        <div class="lots">
-          <div class="lot">
-            <span class="badge">POUCAS VAGAS</span>
-            <h3 style="margin-top:0">Lote 1</h3>
-            <p class="price"><span class="strike">R$ 597</span> R$ 497</p>
-            <p class="lead" style="color:var(--muted)">Acesso aos 3 dias ao vivo + replays 7 dias + materiais.</p>
-            <div class="divider"></div>
-            <a href="LINK_CHECKOUT_LOTE1" class="btn btn-cta" style="display:inline-block;width:100%;text-align:center">GARANTIR AGORA minha vaga no Lote 1</a>
-            <small style="display:block;color:var(--muted);margin-top:10px">Encerra ao atingir o limite de vagas.</small>
+    <!-- COMPARATIVO -->
+    <section>
+      <div class="wrap">
+        <h2 class="title">Por que você só perde? (e como virar o jogo)</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3 class="bad" style="margin-top:0">Mini índice / Mini dólar / Opções Binárias</h3>
+            <ul class="list">
+              <li>✖ Liquidez diminuindo a cada dia e direção suja</li>
+              <li>✖ Manipulação maldosa e constante dos big players</li>
+              <li>✖ Exige muito esforço pra nenhum retorno (em real)</li>
+            </ul>
           </div>
-
-          <div class="lot">
-            <span class="badge">EM BREVE</span>
-            <h3 style="margin-top:0">Lote 2</h3>
-            <p class="price">R$ 697</p>
-            <p class="lead" style="color:var(--muted)">Em espera</p>
-            <div class="divider"></div>
-            <span class="btn" style="opacity:.6;cursor:not-allowed;display:inline-block;width:100%;text-align:center">Em espera</span>
+          <div class="card">
+            <h3 class="good" style="margin-top:0">Nasdaq, Dow, Ouro, Forex, Ásia</h3>
+            <ul class="list">
+              <li>✔ Leitura mais simples com movimentos mais direcionais</li>
+              <li>✔ Liquidez alta e execução previsível</li>
+              <li>✔ Lucro em <b>DÓLAR</b> (moeda 6x mais forte que o real)</li>
+            </ul>
           </div>
         </div>
-
-        <p class="lead" style="color:var(--muted);margin-top:24px"><b>Alunos da Imersão SNIPER</b> receberão um <b>BÔNUS ESPECIAL do BELOTTO</b> na <b>ÚLTIMA AULA</b>.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <div class="wrap">
-      <div class="divider"></div>
-      <p>“Comportamento é TUDO — ou você está no CLUBE DO GAIN ou está no clube do loss.”</p>
-      <p style="color:#8fa4b4">Não é recomendação de compra ou venda. Use as informações com critério e bom juízo.</p>
-    </div>
-  </footer>
+    <!-- PROGRAMA POR DIA -->
+    <section id="programa">
+      <div class="wrap">
+        <h2 class="title">O que você recebe — dia a dia</h2>
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>DIA 1 — O Despertar</h3>
+            <ul class="list">
+              <li>⏱️ Janelas de maior movimento</li>
+              <li>📊 BR x EUA/Ásia na prática</li>
+              <li>🧭 Checklist “não devolvo lucro hoje”</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>DIA 2 — A Leitura Certa</h3>
+            <ul class="list">
+              <li>📈 Setup simples que pegou o movimento</li>
+              <li>🧪 Filtro anti-rompimento falso</li>
+              <li>🛡️ 3 ajustes que reduzem stops bobos</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>DIA 3 — A Virada</h3>
+            <ul class="list">
+              <li>🏁 Proteger lucro (trailing/parcial)</li>
+              <li>🧠 Ansiedade sob controle na hora do clique</li>
+              <li>🪙 Por que ganhar em dólar muda sua vida</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="wrap">
+        <h2 class="title">Dúvidas frequentes</h2>
+        <div class="faq">
+          <details>
+            <summary>Não tenho tempo.</summary>
+            <p>Você já gasta tempo recuperando prejuízo. Aqui você opera em janelas objetivas, com plano e filtro.</p>
+          </details>
+          <details>
+            <summary>Tenho medo de ser mais do mesmo.</summary>
+            <p>Você vai ver ao vivo a diferença entre BR manipulado e mercados técnicos. Não é papo — é tela e execução.</p>
+          </details>
+          <details>
+            <summary>E se eu não acompanhar?</summary>
+            <p>Replay por 7 dias + material direto ao ponto. Sem ruído, só o que faz diferença.</p>
+          </details>
+          <details>
+            <summary>Qual o melhor horário pra operar?</summary>
+            <p>Você sai do Dia 1 com sua janela ideal definida — e sem viver preso à tela.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSCRIÇÃO / LOTES -->
+    <section id="inscricao">
+      <div class="wrap">
+        <div class="panel" style="padding:42px;text-align:center">
+          <h2 class="title" style="margin-bottom:6px">Inscrição — vagas por lote</h2>
+          <p class="subtitle">Poucas vagas por lote para manter a experiência ao vivo realmente acompanhada.</p>
+
+          <div class="lots">
+            <div class="lot">
+              <span class="badge">POUCAS VAGAS</span>
+              <h3 style="margin-top:0">Lote 1</h3>
+              <p class="price"><span class="strike">R$ 597</span> R$ 497</p>
+              <p class="subtitle">Acesso aos 3 dias ao vivo + replays 7 dias + materiais.</p>
+              <div class="divider"></div>
+              <a href="LINK_CHECKOUT_LOTE1" class="btn btn-cta" style="display:inline-block;width:100%;text-align:center">GARANTIR AGORA minha vaga no Lote 1</a>
+              <small style="display:block;color:var(--muted);margin-top:10px">Encerra ao atingir o limite de vagas.</small>
+            </div>
+
+            <div class="lot">
+              <span class="badge">EM BREVE</span>
+              <h3 style="margin-top:0">Lote 2</h3>
+              <p class="price">R$ 697</p>
+              <p class="subtitle">Em espera</p>
+              <div class="divider"></div>
+              <span class="btn" style="opacity:.6;cursor:not-allowed;display:inline-block;width:100%;text-align:center">Em espera</span>
+            </div>
+          </div>
+
+          <p class="subtitle" style="margin-top:24px"><b>Alunos da Imersão SNIPER</b> receberão um <b>BÔNUS ESPECIAL do BELOTTO</b> na <b>ÚLTIMA AULA</b>.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="divider"></div>
+        <p>“Comportamento é TUDO — ou você está no CLUBE DO GAIN ou está no clube do loss.”</p>
+        <p style="color:#8fa4b4">Não é recomendação de compra ou venda. Use as informações com critério e bom juízo.</p>
+      </div>
+    </footer>
+  </div>
 </main>
+
+<script>
+  // === Gate de 4min50s ===
+  const gateSeconds = 290; // 4:50
+  const gate = document.getElementById('conteudo');
+  const timerEl = document.getElementById('gateTimer');
+  const unlockNow = document.getElementById('unlockNow');
+
+  let remaining = gateSeconds;
+  function fmt(t){
+    const m = String(Math.floor(t/60)).padStart(2,'0');
+    const s = String(t%60).padStart(2,'0');
+    return `${m}:${s}`;
+  }
+  function tick(){
+    remaining--;
+    if(remaining <= 0){
+      reveal();
+      return;
+    }
+    if(timerEl) timerEl.textContent = `Liberando conteúdo em ${fmt(remaining)}…`;
+    setTimeout(tick, 1000);
+  }
+  function reveal(){
+    gate.classList.add('show');
+    if(timerEl) timerEl.textContent = 'Conteúdo liberado ✅';
+  }
+  setTimeout(tick, 1000);
+
+  // Liberar conteúdo imediatamente (link "Quero ver o conteúdo agora")
+  if(unlockNow){
+    unlockNow.addEventListener('click', function(e){
+      // permite scroll até a âncora, mas garante que a seção esteja visível
+      reveal();
+    });
+  }
+
+  // === Controle de áudio via YouTube Iframe API ===
+  // Requer enablejsapi=1 no src do iframe
+  const unmuteBtn = document.getElementById('unmuteBtn');
+  const vsl = document.getElementById('vsl');
+
+  function postToPlayer(cmd, args){
+    if(!vsl || !vsl.contentWindow) return;
+    vsl.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: cmd,
+      args: args || []
+    }), '*');
+  }
+
+  // Garantir que o player inicie (alguns navegadores precisam do play explícito)
+  window.addEventListener('load', () => {
+    // Tenta dar play (muted) no início
+    postToPlayer('playVideo');
+  });
+
+  if(unmuteBtn){
+    unmuteBtn.addEventListener('click', () => {
+      postToPlayer('unMute');
+      postToPlayer('setVolume', [100]);
+      unmuteBtn.textContent = 'Áudio ativado ✅';
+      unmuteBtn.disabled = true;
+      unmuteBtn.style.opacity = 0.7;
+    });
+  }
+</script>
+
 </body>
 </html>
