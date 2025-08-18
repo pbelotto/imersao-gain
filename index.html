@@ -37,8 +37,21 @@
   .click-blocker{position:absolute;inset:0;background:transparent;pointer-events:auto;}
 
   .vsl-controls{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:var(--muted);font-size:14px;flex-wrap:wrap}
-  .microbtn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#0f171f;font-weight:800;cursor:pointer;color:var(--ink)}
+  .microbtn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#0f171f;font-weight:800;cursor:pointer;color:var(--ink)}
   .microbtn[disabled]{opacity:.7;cursor:default}
+
+  /* Ícone de som pulsando */
+  .sound-dot{
+    width:10px;height:10px;border-radius:50%;
+    background:linear-gradient(180deg,var(--accent),#10cfd1);
+    box-shadow:0 0 0 0 rgba(28,237,237,.7);
+    animation:pulse 1.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(28,237,237,.7)}
+    70%{box-shadow:0 0 0 12px rgba(28,237,237,0)}
+    100%{box-shadow:0 0 0 0 rgba(28,237,237,0)}
+  }
 
   /* Barra de progresso do gate */
   .gate-wrap{width:100%;max-width:520px;display:flex;flex-direction:column;gap:8px;align-items:center}
@@ -72,7 +85,7 @@
   .divider{height:1px;background:var(--line);margin:var(--s3) 0}
   footer{padding:var(--s5) 0;color:#8fa4b4;text-align:center}
 
-  /* Gate: esconde o resto até 4:50 */
+  /* Gate: esconde o resto até liberar */
   .gated{display:none}
   .show{display:block}
 </style>
@@ -104,17 +117,17 @@
         </div>
 
         <div class="vsl-controls">
-          <button id="unmuteBtn" class="microbtn">Ativar áudio</button>
+          <button id="unmuteBtn" class="microbtn"><span class="sound-dot" aria-hidden="true"></span> Ativar áudio</button>
           <div class="gate-wrap">
             <div class="progress"><div id="gateBar" class="bar"></div></div>
-            <span id="gateTimer">Liberando conteúdo em 04:50…</span>
+            <span id="gateTimer">Liberando poucas vagas em 05:16…</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTEÚDO (fica escondido por 4:50 e depois aparece) -->
+  <!-- CONTEÚDO (liberado depois do gate) -->
   <div id="conteudo" class="gated">
     <!-- PROVAS REAIS -->
     <section>
@@ -188,31 +201,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section>
-      <div class="wrap">
-        <h2 class="title">Dúvidas frequentes</h2>
-        <div class="faq">
-          <details>
-            <summary>Não tenho tempo.</summary>
-            <p>Você já gasta tempo recuperando prejuízo. Aqui você opera em janelas objetivas, com plano e filtro.</p>
-          </details>
-          <details>
-            <summary>Tenho medo de ser mais do mesmo.</summary>
-            <p>Você vai ver ao vivo a diferença entre BR manipulado e mercados técnicos. Não é papo — é tela e execução.</p>
-          </details>
-          <details>
-            <summary>E se eu não acompanhar?</summary>
-            <p>Replay por 7 dias + material direto ao ponto. Sem ruído, só o que faz diferença.</p>
-          </details>
-          <details>
-            <summary>Qual o melhor horário pra operar?</summary>
-            <p>Você sai do Dia 1 com sua janela ideal definida — e sem viver preso à tela.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <!-- INSCRIÇÃO / LOTES -->
     <section id="inscricao">
       <div class="wrap">
@@ -257,8 +245,10 @@
 </main>
 
 <script>
-  // === Gate de 4min50s ===
-  const gateSeconds = 290; // 4:50
+  // === Gate: 5:16 no desktop, 2:30 em mobile ===
+  const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const gateSeconds = isTouch ? 150 : 316; // mobile 2:30, desktop 5:16
+
   const gate = document.getElementById('conteudo');
   const timerEl = document.getElementById('gateTimer');
   const barEl = document.getElementById('gateBar');
@@ -272,7 +262,10 @@
   function tick(){
     elapsed++;
     const remaining = Math.max(gateSeconds - elapsed, 0);
-    if(timerEl) timerEl.textContent = `Liberando conteúdo em ${fmt(remaining)}…`;
+    if(timerEl){
+      const label = 'Liberando poucas vagas em';
+      timerEl.textContent = `${label} ${fmt(remaining)}…`;
+    }
     if(barEl){
       const pct = Math.min((elapsed / gateSeconds) * 100, 100);
       barEl.style.width = pct + '%';
@@ -285,7 +278,7 @@
   }
   function reveal(){
     gate.classList.add('show');
-    if(timerEl) timerEl.textContent = 'Conteúdo liberado ✅';
+    if(timerEl) timerEl.textContent = 'Poucas vagas liberadas ✅';
     if(barEl) barEl.style.width = '100%';
   }
   setTimeout(tick, 1000);
@@ -301,18 +294,18 @@
     }), '*');
   }
 
-  // Autoplay garantido (muted)
+  // Autoplay garantido (muted) e play no load
   window.addEventListener('load', () => {
     postToPlayer('mute');
     postToPlayer('playVideo');
   });
 
-  // Clique destrava o áudio e mantém o ponto atual
+  // Botão ativa o áudio sem reiniciar
   if(unmuteBtn){
     unmuteBtn.addEventListener('click', () => {
       postToPlayer('unMute');
       postToPlayer('setVolume', [100]);
-      unmuteBtn.textContent = 'Áudio ativado ✅';
+      unmuteBtn.innerHTML = '<span class="sound-dot" aria-hidden="true"></span> Áudio ativado ✅';
       unmuteBtn.disabled = true;
     });
   }
