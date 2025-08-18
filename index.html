@@ -32,8 +32,18 @@
   .panel{background:linear-gradient(180deg,#141c25,#0f171f);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
   .video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
   .video iframe{position:absolute;inset:0;width:100%;height:100%}
-  .vsl-controls{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:var(--muted);font-size:14px}
-  .microbtn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#0f171f;font-weight:700;cursor:pointer}
+
+  /* Bloqueia cliques no player (evita pause) */
+  .click-blocker{position:absolute;inset:0;background:transparent;pointer-events:auto;}
+
+  .vsl-controls{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:var(--muted);font-size:14px;flex-wrap:wrap}
+  .microbtn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#0f171f;font-weight:800;cursor:pointer;color:var(--ink)}
+  .microbtn[disabled]{opacity:.7;cursor:default}
+
+  /* Barra de progresso do gate */
+  .gate-wrap{width:100%;max-width:520px;display:flex;flex-direction:column;gap:8px;align-items:center}
+  .progress{width:100%;height:8px;background:#0f171f;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+  .bar{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#10cfd1)}
 
   /* Sections */
   section{padding:var(--s5) 0;border-top:1px solid var(--line)}
@@ -89,10 +99,16 @@
             frameborder="0"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowfullscreen></iframe>
+          <!-- overlay que bloqueia cliques (evita pause) -->
+          <div class="click-blocker" aria-hidden="true"></div>
         </div>
+
         <div class="vsl-controls">
           <button id="unmuteBtn" class="microbtn">Ativar áudio</button>
-          <span id="gateTimer">Liberando conteúdo em 04:50…</span>
+          <div class="gate-wrap">
+            <div class="progress"><div id="gateBar" class="bar"></div></div>
+            <span id="gateTimer">Liberando conteúdo em 04:50…</span>
+          </div>
         </div>
       </div>
     </div>
@@ -245,30 +261,36 @@
   const gateSeconds = 290; // 4:50
   const gate = document.getElementById('conteudo');
   const timerEl = document.getElementById('gateTimer');
+  const barEl = document.getElementById('gateBar');
 
-  let remaining = gateSeconds;
+  let elapsed = 0;
   function fmt(t){
     const m = String(Math.floor(t/60)).padStart(2,'0');
     const s = String(t%60).padStart(2,'0');
     return `${m}:${s}`;
   }
   function tick(){
-    remaining--;
-    if(remaining <= 0){
+    elapsed++;
+    const remaining = Math.max(gateSeconds - elapsed, 0);
+    if(timerEl) timerEl.textContent = `Liberando conteúdo em ${fmt(remaining)}…`;
+    if(barEl){
+      const pct = Math.min((elapsed / gateSeconds) * 100, 100);
+      barEl.style.width = pct + '%';
+    }
+    if(elapsed >= gateSeconds){
       reveal();
       return;
     }
-    if(timerEl) timerEl.textContent = `Liberando conteúdo em ${fmt(remaining)}…`;
     setTimeout(tick, 1000);
   }
   function reveal(){
     gate.classList.add('show');
     if(timerEl) timerEl.textContent = 'Conteúdo liberado ✅';
+    if(barEl) barEl.style.width = '100%';
   }
   setTimeout(tick, 1000);
 
   // === Controle via Iframe API do YouTube (sem controles nativos) ===
-  // Player inicia MUTED por padrão (autoplay funciona). Botão "Ativar áudio" só libera som sem reiniciar.
   const vsl = document.getElementById('vsl');
   const unmuteBtn = document.getElementById('unmuteBtn');
 
@@ -279,7 +301,7 @@
     }), '*');
   }
 
-  // Garantir autoplay no load (muted)
+  // Autoplay garantido (muted)
   window.addEventListener('load', () => {
     postToPlayer('mute');
     postToPlayer('playVideo');
@@ -292,7 +314,6 @@
       postToPlayer('setVolume', [100]);
       unmuteBtn.textContent = 'Áudio ativado ✅';
       unmuteBtn.disabled = true;
-      unmuteBtn.style.opacity = 0.7;
     });
   }
 </script>
