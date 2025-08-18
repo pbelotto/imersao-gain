@@ -35,18 +35,6 @@
   .vsl-controls{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px;color:var(--muted);font-size:14px}
   .microbtn{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#0f171f;font-weight:700;cursor:pointer}
 
-  /* Overlay para destravar áudio */
-  .audio-overlay{
-    position:absolute; inset:0; display:none; place-items:center;
-    background:rgba(0,0,0,.4); backdrop-filter: blur(2px);
-  }
-  .audio-card{
-    background:#0f171f; border:1px solid var(--line); border-radius:12px; padding:16px 18px; text-align:center;
-    box-shadow: var(--shadow);
-  }
-  .audio-card p{margin:0 0 10px; color:var(--muted)}
-  .audio-btn{padding:10px 16px; border-radius:999px; font-weight:800; border:none; background:linear-gradient(180deg,var(--accent),#10cfd1); color:#012426; cursor:pointer}
-
   /* Sections */
   section{padding:var(--s5) 0;border-top:1px solid var(--line)}
   .title{font-size:30px;margin:0 0 var(--s2);text-align:center}
@@ -77,8 +65,6 @@
   /* Gate: esconde o resto até 4:50 */
   .gated{display:none}
   .show{display:block}
-  .peek{color:var(--muted);text-align:center;margin-top:12px;font-size:14px}
-  .peek a{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -91,33 +77,23 @@
 </header>
 
 <main>
-  <!-- HERO: VSL autoplay + tentativa de áudio no load -->
+  <!-- HERO: VSL autoplay (muted) + botão custom "Ativar áudio" -->
   <section class="hero">
     <div class="wrap">
       <div class="panel">
         <div class="video" id="videoWrap">
-          <!-- enablejsapi para controlar via postMessage -->
-          <!-- Tentativa: autoplay com som (mute=0). Se o navegador bloquear, mostramos overlay. -->
+          <!-- controls=0 para esconder controles do YouTube -->
           <iframe id="vsl"
-            src="https://www.youtube.com/embed/0bO4fIvrG0c?autoplay=1&mute=0&controls=1&rel=0&playsinline=1&enablejsapi=1"
+            src="https://www.youtube.com/embed/0bO4fIvrG0c?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&enablejsapi=1&modestbranding=1"
             title="VSL - Imersão SNIPER"
             frameborder="0"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowfullscreen></iframe>
-
-          <!-- Overlay para destravar áudio quando o autoplay com som for bloqueado -->
-          <div class="audio-overlay" id="audioOverlay">
-            <div class="audio-card">
-              <p>Toque para ativar o áudio</p>
-              <button class="audio-btn" id="audioBtn">Ativar áudio</button>
-            </div>
-          </div>
         </div>
-
         <div class="vsl-controls">
+          <button id="unmuteBtn" class="microbtn">Ativar áudio</button>
           <span id="gateTimer">Liberando conteúdo em 04:50…</span>
         </div>
-        <div class="peek">Com pressa? <a href="#conteudo" id="unlockNow">Quero ver o conteúdo agora</a></div>
       </div>
     </div>
   </section>
@@ -269,7 +245,6 @@
   const gateSeconds = 290; // 4:50
   const gate = document.getElementById('conteudo');
   const timerEl = document.getElementById('gateTimer');
-  const unlockNow = document.getElementById('unlockNow');
 
   let remaining = gateSeconds;
   function fmt(t){
@@ -292,20 +267,10 @@
   }
   setTimeout(tick, 1000);
 
-  // Liberar conteúdo imediatamente (link "Quero ver o conteúdo agora")
-  if(unlockNow){
-    unlockNow.addEventListener('click', function(){
-      reveal();
-    });
-  }
-
-  // === Controle de áudio via Iframe API do YouTube ===
-  // Estratégia:
-  // 1) Tentar autoplay com som (mute=0) no src.
-  // 2) Se bloqueado pelo navegador, mostramos overlay para 1 clique destravar.
+  // === Controle via Iframe API do YouTube (sem controles nativos) ===
+  // Player inicia MUTED por padrão (autoplay funciona). Botão "Ativar áudio" só libera som sem reiniciar.
   const vsl = document.getElementById('vsl');
-  const overlay = document.getElementById('audioOverlay');
-  const audioBtn = document.getElementById('audioBtn');
+  const unmuteBtn = document.getElementById('unmuteBtn');
 
   function postToPlayer(cmd, args){
     if(!vsl || !vsl.contentWindow) return;
@@ -314,46 +279,21 @@
     }), '*');
   }
 
-  // Tenta dar play e setar volume alto no load (alguns browsers permitem)
+  // Garantir autoplay no load (muted)
   window.addEventListener('load', () => {
-    postToPlayer('setVolume', [100]);
-    postToPlayer('unMute');
+    postToPlayer('mute');
     postToPlayer('playVideo');
-
-    // Se em ~800ms o áudio ainda estiver bloqueado, exibe overlay
-    setTimeout(() => {
-      // Não temos como "ler" o estado do player sem API completa,
-      // então usamos a regra: sempre mostrar overlay em mobile/iOS
-      // ou se o usuário ainda não interagiu com a página.
-      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-      if(isTouch || isIOS){
-        overlay.style.display = 'grid';
-      }
-    }, 800);
   });
 
-  // Clique do usuário destrava o áudio com 100% de sucesso
-  if(audioBtn){
-    audioBtn.addEventListener('click', () => {
-      postToPlayer('playVideo');
+  // Clique destrava o áudio e mantém o ponto atual
+  if(unmuteBtn){
+    unmuteBtn.addEventListener('click', () => {
       postToPlayer('unMute');
       postToPlayer('setVolume', [100]);
-      overlay.style.display = 'none';
+      unmuteBtn.textContent = 'Áudio ativado ✅';
+      unmuteBtn.disabled = true;
+      unmuteBtn.style.opacity = 0.7;
     });
-  }
-
-  // Se o usuário tocar/clicar em qualquer lugar do vídeo, também destrava
-  const videoWrap = document.getElementById('videoWrap');
-  if(videoWrap){
-    videoWrap.addEventListener('click', () => {
-      if(overlay.style.display === 'grid'){
-        postToPlayer('playVideo');
-        postToPlayer('unMute');
-        postToPlayer('setVolume', [100]);
-        overlay.style.display = 'none';
-      }
-    }, { once:false });
   }
 </script>
 
